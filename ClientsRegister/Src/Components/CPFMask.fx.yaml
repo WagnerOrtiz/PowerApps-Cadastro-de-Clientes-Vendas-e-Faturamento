@@ -1,0 +1,68 @@
+CPFMask As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =640
+    Width: =640
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    CPF_Mask As text:
+        Default: =
+        Height: =70
+        OnChange: |
+            =Clear(cpfCollection);
+            
+            ForAll(
+                Sequence(Len(CPF_Mask.Text)),
+                Collect(
+                    cpfCollection,
+                    {numCaracter: CountRows(MatchAll(Left(CPF_Mask.Text,Value), "#")),
+                    formatarAssim: Left(CPF_Mask.Text,Value)}
+                )
+            );
+            Reset(CPF_Input)
+        Size: =21
+        Width: =560
+        X: =40
+        Y: =143
+        ZIndex: =1
+
+    CPF_Input As text:
+        Default: =cpfFormatado
+        Height: =70
+        MaxLength: =14
+        Size: =21
+        Width: =560
+        X: =40
+        Y: =40
+        ZIndex: =2
+
+    CPF_Slider As slider:
+        Default: =Len(CPF_Input.Text)
+        Height: =70
+        OnChange: |-
+            =Set(cpfFormatado,
+                With({ 
+                    textoSomentenumeros:Concat(MatchAll(CPF_Input.Text, Match.Digit), FullMatch)
+                    },
+                    Substitute(
+                        Text(
+                            Value(
+                                textoSomentenumeros
+                            ),
+                            LookUp(
+                                cpfCollection,
+                                Len(textoSomentenumeros) = Value(numCaracter)
+                            ).formatarAssim
+                        ),
+                        "_","."
+                    )
+                )
+            );
+            
+            Reset(CPF_Input)
+        Width: =560
+        X: =40
+        Y: =271
+        ZIndex: =3
+

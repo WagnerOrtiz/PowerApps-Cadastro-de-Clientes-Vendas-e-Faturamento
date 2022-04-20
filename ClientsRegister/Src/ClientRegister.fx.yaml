@@ -1,0 +1,545 @@
+ClientRegister As screen:
+    Fill: =RGBA(0, 13, 75, 1)
+    OnVisible: |-
+        =Set(ResetInputs,false); Set(ResetInputs, true); Set(phoneFormatado, Blank()); Set(ErrorMsgContent, Blank());
+        Clear(phoneCollection);
+        
+        ForAll(
+            Sequence(Len(Phone_Mask_1.Text)),
+            Collect(
+                phoneCollection,
+                {numCaracter: CountRows(MatchAll(Left(Phone_Mask_1.Text,Value), "#")),
+                formatarAssim: Left(Phone_Mask_1.Text,Value)}
+            )
+        );
+
+    Header2 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =18
+
+        Rectangle1_1 As rectangle:
+            Fill: =RGBA(39, 67, 125, 1)
+            Height: =120
+            Width: =640
+            ZIndex: =7
+
+        ProfilePhoto_1 As image:
+            Height: =121
+            Image: =Office365Users.UserPhoto(User().Email)
+            RadiusBottomLeft: =110
+            RadiusBottomRight: =110
+            RadiusTopLeft: =110
+            RadiusTopRight: =110
+            Width: =121
+            X: =37
+            Y: =28
+            ZIndex: =8
+
+        Label1_1 As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =70
+            Size: =30
+            Text: ="       Registrar Cliente"
+            Width: =560
+            X: =40
+            Y: =30
+            ZIndex: =9
+
+    EmailBox As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =18
+
+        EmailInput As text:
+            AccessibleLabel: =
+            BorderColor: =RGBA(39, 67, 125, 1)
+            BorderThickness: =3
+            Color: =RGBA(230, 230, 230, 1)
+            Default: =""
+            DisabledBorderColor: =RGBA(39, 67, 125, 1)
+            DisabledColor: =RGBA(39, 67, 125, 1)
+            DisabledFill: =RGBA(0, 13, 75, 1)
+            Fill: =RGBA(0, 13, 75, 1)
+            Height: =70
+            HintText: ="E-mail"
+            HoverBorderColor: =RGBA(39, 67, 125, 1)
+            HoverColor: =RGBA(39, 67, 125, 1)
+            HoverFill: =RGBA(0, 13, 75, 1)
+            OnChange: =Set(email, Lower(EmailInput.Text))
+            OnSelect: =
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Reset: =ResetInputs
+            Size: =21
+            Width: =476
+            X: =119
+            Y: =399
+            ZIndex: =3
+
+        Icon3_1 As icon.Phone:
+            Color: =RGBA(39, 67, 125, 1)
+            Icon: =Icon.Mail
+            X: =34
+            Y: =405
+            ZIndex: =6
+
+    NameBox As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =18
+
+        NameInput As text:
+            BorderColor: =RGBA(39, 67, 125, 1)
+            BorderThickness: =3
+            Color: =RGBA(230, 230, 230, 1)
+            Default: =""
+            DisabledBorderColor: =RGBA(39, 67, 125, 1)
+            DisabledColor: =RGBA(39, 67, 125, 1)
+            DisabledFill: =RGBA(0, 13, 75, 1)
+            Fill: =RGBA(0, 13, 75, 1)
+            Height: =70
+            HintText: ="Nome"
+            HoverBorderColor: =RGBA(39, 67, 125, 1)
+            HoverColor: =RGBA(39, 67, 125, 1)
+            HoverFill: =RGBA(0, 13, 75, 1)
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Reset: =ResetInputs
+            Size: =21
+            Width: =476
+            X: =119
+            Y: =189
+            ZIndex: =2
+
+        Icon2 As icon.Person:
+            Color: =RGBA(39, 67, 125, 1)
+            Icon: =Icon.Person
+            X: =34
+            Y: =192
+            ZIndex: =4
+
+    ErrorMsg As label:
+        Color: =RGBA(255, 255, 0, 1)
+        Height: =77
+        Size: =11
+        Text: =ErrorMsgContent
+        Width: =258
+        X: =34
+        Y: =941
+        ZIndex: =27
+
+    PhoneInputs As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =30
+
+        Phone_Mask_1 As text:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            Color: =RGBA(0, 0, 0, 0)
+            Default: |-
+                ="(##) #####-####"
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(0, 0, 0, 0)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =39
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            OnChange: =
+            PressedBorderColor: =
+            PressedColor: =RGBA(255, 255, 0, 1)
+            PressedFill: =
+            Size: =12
+            Width: =169
+            X: =428
+            Y: =279
+            ZIndex: =1
+
+        PhoneIcon As icon.Phone:
+            Color: =RGBA(39, 67, 125, 1)
+            Icon: =Icon.Phone
+            X: =34
+            Y: =295
+            ZIndex: =5
+
+        Phone_Input_With_Mask As text:
+            BorderColor: =RGBA(50, 86, 160, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Default: =phoneFormatado
+            DisabledBorderColor: =RGBA(50, 86, 160, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =70
+            HintText: ="Telefone"
+            HoverBorderColor: =RGBA(50, 86, 160, 1)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            MaxLength: =15
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Size: =21
+            Width: =483
+            X: =114
+            Y: =301
+            ZIndex: =28
+
+        Phone_Slider_1 As slider:
+            Default: =Len(Phone_Input_With_Mask.Text)
+            Height: =70
+            OnChange: |-
+                =Set(phoneFormatado,
+                    With({ 
+                        textoSomentenumeros:Concat(MatchAll(Phone_Input_With_Mask.Text, Match.Digit), FullMatch)
+                        },
+                        Substitute(
+                            Text(
+                                Value(
+                                    textoSomentenumeros
+                                ),
+                                LookUp(
+                                    phoneCollection,
+                                    Len(textoSomentenumeros) = Value(numCaracter)
+                                ).formatarAssim
+                            ),
+                            "_","."
+                        )
+                    )
+                );
+                
+                Reset(Phone_Input_With_Mask)
+            Visible: =false
+            Width: =469
+            X: =121
+            Y: =523
+            ZIndex: =29
+
+    Comment As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =32
+
+        Icon1 As icon.Message:
+            BorderColor: =RGBA(50, 86, 160, 1)
+            Color: =RGBA(39, 67, 125, 1)
+            Icon: =Icon.Message
+            X: =34
+            Y: =757
+            ZIndex: =17
+
+        CommentBox As text:
+            AccessibleLabel: =
+            BorderColor: =RGBA(39, 67, 125, 1)
+            BorderThickness: =3
+            Color: =RGBA(230, 230, 230, 1)
+            Default: =""
+            DisabledBorderColor: =RGBA(39, 67, 125, 1)
+            DisabledColor: =RGBA(39, 67, 125, 1)
+            DisabledFill: =RGBA(0, 13, 75, 1)
+            Fill: =RGBA(0, 13, 75, 1)
+            Height: =162
+            HintText: |-
+                ="Obs:"
+            HoverBorderColor: =RGBA(39, 67, 125, 1)
+            HoverColor: =RGBA(39, 67, 125, 1)
+            HoverFill: =RGBA(0, 13, 75, 1)
+            Mode: =TextMode.MultiLine
+            PaddingTop: =10
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Reset: =ResetInputs
+            Size: =21
+            Width: =476
+            X: =121
+            Y: =760
+            ZIndex: =18
+
+    BirthdayInput As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =32
+
+        Birthday As label:
+            Color: =RGBA(39, 67, 125, 1)
+            FontWeight: =FontWeight.Bold
+            Height: =56
+            Size: =21
+            Text: |-
+                ="Nascimento:"
+            Width: =212
+            X: =38
+            Y: =596
+            ZIndex: =21
+
+        BirthdayPicker As datepicker:
+            BorderColor: =RGBA(39, 67, 125, 1)
+            BorderThickness: =3
+            Color: =RGBA(255, 255, 255, 1)
+            Fill: =RGBA(0, 13, 75, 1)
+            Height: =60
+            Reset: =ResetInputs
+            Size: =24
+            Width: =237
+            X: =359
+            Y: =592
+            ZIndex: =22
+
+    Buttons As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =32
+
+        Save As button:
+            Align: =Center
+            Height: =45
+            OnSelect: |-
+                =If(
+                    Len(NameInput.Text) < 1,
+                    Set(
+                        ErrorMsgContent,
+                        "Insira seu nome"
+                    ),
+                    If(
+                        Len(Phone_Input_With_Mask.Text) < 11,
+                        Set(
+                            ErrorMsgContent,
+                            "Telefone inválido"
+                        ),
+                        If(
+                            Find(
+                                "@",
+                                EmailInput.Text
+                            ) = Blank(),
+                            Set(
+                                ErrorMsgContent,
+                                "E-mail invádo"
+                            ),
+                            If(
+                                PaisDropDown.Selected.Result = Blank() || EstadoDropDown.Selected.Result = Blank() || CidadeDropDown.Selected.Result = Blank(),
+                                Set(
+                                    ErrorMsgContent,
+                                    "Localização inválida"
+                                ),
+                                If(
+                                    DateDiff(
+                                        BirthdayPicker.SelectedDate,
+                                        Today(),
+                                        Months
+                                    ) < 216,
+                                    Set(
+                                        ErrorMsgContent,
+                                        "Cadastro permitido apenas para maiores de 18 anos"
+                                    ),
+                                    Patch(
+                                        Table1,
+                                        {
+                                            NOME: NameInput.Text,
+                                            TELEFONE: Phone_Input_With_Mask.Text,
+                                            EMAIL: email,
+                                            PAIS: PaisDropDown.Selected.Result,
+                                            ESTADO: EstadoDropDown.Selected.Result,
+                                            CIDADE: CidadeDropDown.Selected.Result,
+                                            NASCIMENTO: BirthdayPicker.SelectedDate,
+                                            PFouPJ: PForPJ_Label.Text,
+                                            OBS: CommentBox.Text,
+                                            DATAdoCADASTRO: Today()
+                                        }
+                                    );
+                                    Refresh(Table1);
+                                    Navigate(Home)
+                                )
+                            )
+                        )
+                    )
+                )
+            Size: =18
+            Text: ="Salvar"
+            Width: =130
+            X: =330
+            Y: =955
+            ZIndex: =19
+
+        Cancel As button:
+            Align: =Center
+            Color: =RGBA(39, 67, 125, 1)
+            Fill: =RGBA(230, 230, 230, 1)
+            OnSelect: =Back()
+            Size: =18
+            Text: ="Cancelar"
+            Width: =120
+            X: =474
+            Y: =958
+            ZIndex: =20
+
+    PForPJ As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =32
+
+        PFouPJ As toggleSwitch:
+            Default: =true
+            HandleFill: =RGBA(39, 67, 125, 1)
+            Height: =54
+            Reset: =ResetInputs
+            ShowLabel: =false
+            Size: =21
+            TrueFill: =RGBA(230, 230, 230, 1)
+            Width: =84
+            X: =513
+            Y: =681
+            ZIndex: =14
+
+        Label5 As label:
+            Color: =RGBA(39, 67, 125, 1)
+            FontWeight: =FontWeight.Bold
+            Height: =72
+            Size: =21
+            Text: |-
+                ="PF ou PJ:"
+            Width: =212
+            X: =38
+            Y: =670
+            ZIndex: =15
+
+        PForPJ_Label As label:
+            Color: =RGBA(39, 67, 125, 1)
+            FontWeight: =FontWeight.Bold
+            Height: =60
+            Size: =21
+            Text: =If(PFouPJ.Value, "Pessoa Física", "Pessoa Jurídica")
+            Width: =263
+            X: =267
+            Y: =675
+            ZIndex: =16
+
+    LocationInput As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =32
+
+        PaisDropDown As dropdown:
+            AllowEmptySelection: =true
+            BorderColor: =RGBA(39, 67, 125, 1)
+            BorderThickness: =3
+            Color: =RGBA(230, 230, 230, 1)
+            Default: =""
+            Fill: =RGBA(0, 13, 75, 1)
+            Height: =60
+            Items: =Sort(Distinct(Table2,PAIS),Result,Ascending)
+            Reset: =ResetInputs
+            Size: =21
+            Width: =96
+            X: =119
+            Y: =501
+            ZIndex: =10
+
+        EstadoDropDown As dropdown:
+            AllowEmptySelection: =true
+            BorderColor: =RGBA(39, 67, 125, 1)
+            BorderThickness: =3
+            Color: =RGBA(230, 230, 230, 1)
+            Default: =""
+            Fill: =RGBA(0, 13, 75, 1)
+            Height: =60
+            Items: =Sort(Distinct(Filter(Table2, PAIS = PaisDropDown.Selected.Result),ESTADO),Result,Ascending)
+            Reset: =ResetInputs
+            Size: =21
+            Width: =96
+            X: =250
+            Y: =501
+            ZIndex: =11
+
+        Icon3_2 As icon.Phone:
+            Color: =RGBA(39, 67, 125, 1)
+            Icon: =Icon.Location
+            X: =34
+            Y: =497
+            ZIndex: =12
+
+        CidadeDropDown As dropdown:
+            AllowEmptySelection: =true
+            BorderColor: =RGBA(39, 67, 125, 1)
+            BorderThickness: =3
+            Color: =RGBA(230, 230, 230, 1)
+            Default: =""
+            Fill: =RGBA(0, 13, 75, 1)
+            Height: =60
+            Items: =Distinct(Filter(Table2,ESTADO = EstadoDropDown.Selected.Result),CIDADE)
+            Reset: =ResetInputs
+            Size: =21
+            Width: =217
+            X: =380
+            Y: =501
+            ZIndex: =13
+
+    NavBar_3 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =37
+
+        NavBarClients_3 As icon.People:
+            Color: =RGBA(255, 255, 255, 1)
+            Icon: =Icon.People
+            OnSelect: =Navigate(ClientRegister,ScreenTransition.CoverRight)
+            X: =209
+            Y: =1047
+            ZIndex: =23
+
+        NavBarSales_3 As icon.Money:
+            Color: =RGBA(39, 67, 125, 1)
+            Height: =63
+            Icon: =Icon.Money
+            OnSelect: =Navigate(SalesList,ScreenTransition.CoverRight)
+            X: =360
+            Y: =1048
+            ZIndex: =24
+
+        NavBarHome_3 As icon.Home:
+            Color: =RGBA(39, 67, 125, 1)
+            Icon: =Icon.Home
+            OnSelect: =Navigate(Home,ScreenTransition.CoverRight)
+            X: =50
+            Y: =1047
+            ZIndex: =25
+
+        Icon7_1 As icon.DocumentwithContent:
+            Color: =RGBA(39, 67, 125, 1)
+            Icon: =Icon.DocumentWithContent
+            OnSelect: =Navigate(ClientsList,ScreenTransition.CoverRight)
+            X: =526
+            Y: =1047
+            ZIndex: =26
+

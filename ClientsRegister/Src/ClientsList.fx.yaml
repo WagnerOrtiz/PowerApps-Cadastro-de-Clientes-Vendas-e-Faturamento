@@ -1,0 +1,203 @@
+ClientsList As screen:
+    Fill: =RGBA(0, 13, 75, 1)
+    OnVisible: =Set(ResetInputs,false); Set(ResetInputs, true); Set(ErrorMsgContent, Blank())
+
+    "ClientsGallery As gallery.'BrowseLayout_Vertical_ThreeTextVariant_ver4.0'":
+        BorderColor: =RGBA(230, 230, 230, 1)
+        Height: =729
+        Items: |-
+            =If(Connection.Connected=false,
+                SortByColumns(Search(arrClientsOffline,SearchInput.Text,"NOME"),"NOME", Ascending),
+                SortByColumns(Search(Table1,SearchInput.Text,"NOME"),"NOME", Ascending)
+            )
+        Layout: =Layout.Vertical
+        TemplatePadding: =0
+        TemplateSize: =Min(168, Self.Height - 60)
+        Width: =606
+        X: =17
+        Y: =261
+        ZIndex: =8
+
+        Title2 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent);Navigate(ClientsDetails)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =28
+            Text: =ThisItem.NOME
+            VerticalAlign: =VerticalAlign.Top
+            Width: =414
+            X: =32
+            Y: =16
+            ZIndex: =1
+
+        Subtitle2 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent);Navigate(ClientsDetails)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =23
+            Text: |-
+                ="Cel: " &ThisItem.TELEFONE
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - 104
+            X: =32
+            Y: =Title2.Y + Title2.Height + 2
+            ZIndex: =2
+
+        Body1 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =Self.Size * 4
+            OnSelect: =Select(Parent);Navigate(ClientsDetails)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =20
+            Text: =ThisItem.CIDADE
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.TemplateWidth - 104
+            X: =32
+            Y: =Subtitle2.Y + Subtitle2.Height + 4
+            ZIndex: =3
+
+        Separator2 As rectangle:
+            Fill: =RGBA(230, 230, 230, 1)
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - 1
+            ZIndex: =5
+
+        NextArrow2_1 As icon.ChevronRight:
+            AccessibleLabel: =Self.Tooltip
+            Color: =RGBA(230, 230, 230, 1)
+            Height: =55
+            Icon: =Icon.ChevronRight
+            OnSelect: =Select(Parent); ViewForm(Form);Navigate(ClientsDetails)
+            PaddingBottom: =10
+            PaddingLeft: =10
+            PaddingRight: =10
+            PaddingTop: =10
+            TabIndex: =0
+            Tooltip: ="View item details"
+            Width: =55
+            X: =506
+            Y: =58
+            ZIndex: =6
+
+    searchBar As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =11
+
+        SearchInput As text:
+            Align: =Align.Center
+            BorderColor: =RGBA(50, 86, 160, 1)
+            Default: =""
+            DisabledColor: =RGBA(255, 255, 255, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =70
+            HintText: ="Procurar..."
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Size: =21
+            Width: =571
+            X: =40
+            Y: =165
+            ZIndex: =9
+
+        Icon11 As icon.Search:
+            Color: =RGBA(50, 86, 160, 1)
+            Height: =45
+            Icon: =Icon.Search
+            Width: =45
+            X: =59
+            Y: =178
+            ZIndex: =10
+
+    Header2_2 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =18
+
+        Rectangle1_3 As rectangle:
+            Fill: =RGBA(39, 67, 125, 1)
+            Height: =120
+            Width: =640
+            ZIndex: =1
+
+        ProfilePhoto_3 As image:
+            Height: =121
+            Image: =Office365Users.UserPhoto(User().Email)
+            RadiusBottomLeft: =110
+            RadiusBottomRight: =110
+            RadiusTopLeft: =110
+            RadiusTopRight: =110
+            Width: =121
+            X: =37
+            Y: =28
+            ZIndex: =2
+
+        Label1_3 As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =70
+            Size: =30
+            Text: ="       Lista de Clientes"
+            Width: =560
+            X: =40
+            Y: =30
+            ZIndex: =3
+
+    NavBar_5 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =37
+
+        NavBarClients_5 As icon.People:
+            Color: =RGBA(39, 67, 125, 1)
+            Icon: =Icon.People
+            OnSelect: =Navigate(ClientRegister,ScreenTransition.CoverRight)
+            X: =209
+            Y: =1047
+            ZIndex: =4
+
+        NavBarSales_5 As icon.Money:
+            Color: =RGBA(39, 67, 125, 1)
+            Height: =63
+            Icon: =Icon.Money
+            OnSelect: =Navigate(SalesList,ScreenTransition.CoverRight)
+            X: =376
+            Y: =1048
+            ZIndex: =5
+
+        NavBarHome_5 As icon.Home:
+            Color: =RGBA(39, 67, 125, 1)
+            Icon: =Icon.Home
+            OnSelect: =Navigate(Home,ScreenTransition.CoverRight)
+            X: =50
+            Y: =1047
+            ZIndex: =6
+
+        Icon7_3 As icon.DocumentwithContent:
+            Color: =RGBA(255, 255, 255, 1)
+            Icon: =Icon.DocumentWithContent
+            X: =526
+            Y: =1047
+            ZIndex: =7
+

@@ -1,0 +1,549 @@
+SaleRegister As screen:
+    Fill: =RGBA(0, 13, 75, 1)
+    OnVisible: =NewForm(FormVendas); Set(ResetInputs,false); Set(ResetInputs, true); Set(ErrorMsgContent, Blank())
+
+    MascaraValor As text:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 0)
+        Default: |-
+            =Substitute(Text(Value(ValorInput.Text),"R$ #,##0.00"),",",".")
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =If(Text(Value(ValorInput.Text)>0), Green, Red)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        DisplayMode: =DisplayMode.Disabled
+        Height: =70
+        HintText: ="R$"
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =RGBA(204, 204, 204, 1)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        PressedBorderColor: =
+        PressedColor: =
+        PressedFill: =
+        Size: =21
+        Width: =510
+        X: =45
+        Y: =394
+        ZIndex: =1
+
+    DataVenda As label:
+        Color: =RGBA(39, 67, 125, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =56
+        Size: =21
+        Text: ="Data da Venda"
+        Width: =250
+        X: =45
+        Y: =496
+        ZIndex: =11
+
+    ErrorMsg_1 As label:
+        Color: =RGBA(255, 0, 0, 1)
+        Height: =94
+        Size: =11
+        Text: =ErrorMsgContent
+        Width: =296
+        X: =14
+        Y: =925
+        ZIndex: =12
+
+    Cliente As label:
+        Color: =RGBA(39, 67, 125, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =56
+        Size: =21
+        Text: ="Cliente"
+        Width: =250
+        X: =38
+        Y: =194
+        ZIndex: =13
+
+    Valor As label:
+        Color: =RGBA(39, 67, 125, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =56
+        Size: =21
+        Text: ="Valor"
+        Width: =250
+        X: =40
+        Y: =338
+        ZIndex: =14
+
+    obs As label:
+        Color: =RGBA(39, 67, 125, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =56
+        Size: =21
+        Text: |-
+            ="OBS:"
+        Width: =250
+        X: =48
+        Y: =653
+        ZIndex: =15
+
+    FormVendas As form:
+        DataSource: =Table3
+        DefaultMode: =FormMode.New
+        Height: =654
+        OnSuccess: =
+        Width: =600
+        X: =15
+        Y: =228
+        ZIndex: =16
+
+        NOMEclienteVENDA_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="NOMEclienteVENDA"
+            Default: =ThisItem.NOMEclienteVENDA
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@Table3],DataSourceInfo.DisplayName,"NOMEclienteVENDA")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@Table3], DataSourceInfo.MaxLength, "NOMEclienteVENDA")
+            Required: =false
+            Update: =clientName.Selected.NOME
+            Width: =600
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            DataCardKey1 As label:
+                AutoHeight: =true
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            ErrorMessage1 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =24
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =clientName.Y + clientName.Height
+                ZIndex: =3
+
+            StarVisible1 As label:
+                Align: =Align.Center
+                Height: =DataCardKey1.Height
+                Size: =21
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey1.Y
+                ZIndex: =4
+
+            clientName As dropdown:
+                AllowEmptySelection: =true
+                BorderColor: =RGBA(50, 86, 160, 1)
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(0, 13, 75, 1)
+                Height: =70
+                Items: =Table1
+                Reset: =ResetInputs
+                Size: =21
+                Width: =510
+                X: =29
+                Y: =21
+                ZIndex: =5
+
+        VALOR_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="VALOR"
+            Default: =ThisItem.VALOR
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@Table3],DataSourceInfo.DisplayName,"VALOR")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =151
+            MaxLength: =DataSourceInfo([@Table3], DataSourceInfo.MaxLength, "VALOR")
+            Required: =false
+            Update: =ValorInput.Text
+            Width: =600
+            X: =0
+            Y: =1
+            ZIndex: =1
+
+            DataCardKey2 As label:
+                AutoHeight: =true
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =15
+                ZIndex: =1
+
+            ErrorMessage2 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =24
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =clientName.Y + clientName.Height
+                ZIndex: =3
+
+            StarVisible2 As label:
+                Align: =Align.Center
+                Height: =DataCardKey2.Height
+                Size: =21
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey2.Y
+                ZIndex: =4
+
+            ValorInput As text:
+                BorderColor: =RGBA(50, 86, 160, 1)
+                Color: =RGBA(0, 0, 0, 0)
+                Default: =""
+                DisabledBorderColor: =RGBA(50, 86, 160, 1)
+                DisabledColor: =RGBA(0, 0, 0, 0)
+                DisabledFill: =RGBA(0, 0, 0, 0)
+                Fill: =RGBA(0, 0, 0, 0)
+                FocusedBorderColor: =RGBA(136,160,219,1)
+                FocusedBorderThickness: =2
+                FontWeight: =FontWeight.Lighter
+                Format: |-
+                    =Text(Value("[$-pt-BR]R$#.###.###"))
+                Height: =70
+                HintText: =""
+                HoverBorderColor: =Self.FocusedBorderColor
+                HoverColor: =RGBA(0, 0, 0, 0)
+                HoverFill: =RGBA(0, 0, 0, 0)
+                OnChange: =
+                OnSelect: |-
+                    =UpdateContext({active:true})
+                PressedColor: =RGBA(0, 0, 0, 0)
+                PressedFill: =RGBA(0, 0, 0, 0)
+                Reset: =ResetInputs
+                Size: =21
+                Width: =510
+                X: =30
+                Y: =70
+                ZIndex: =5
+
+        DATA_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="DATA"
+            Default: =ThisItem.DATA
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@Table3],DataSourceInfo.DisplayName,"DATA")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =158
+            MaxLength: =DataSourceInfo([@Table3], DataSourceInfo.MaxLength, "DATA")
+            Required: =false
+            Update: =DataVendaPicker.SelectedDate
+            Width: =600
+            X: =0
+            Y: =2
+            ZIndex: =1
+
+            DataCardKey3 As label:
+                AutoHeight: =true
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Visible: =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                ZIndex: =1
+
+            ErrorMessage3 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =24
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataVendaPicker.Y + DataVendaPicker.Height
+                ZIndex: =3
+
+            StarVisible3 As label:
+                Align: =Align.Center
+                Height: =DataCardKey3.Height
+                Size: =21
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey3.Y
+                ZIndex: =4
+
+            DataVendaPicker As datepicker:
+                BorderColor: =RGBA(50, 86, 160, 1)
+                Color: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(0, 13, 75, 1)
+                Height: =70
+                Reset: =ResetInputs
+                Size: =24
+                Width: =354
+                X: =30
+                Y: =71
+                ZIndex: =5
+
+        OBS_DataCard2 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="OBS"
+            Default: =ThisItem.OBS
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@Table3],DataSourceInfo.DisplayName,"OBS")
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =251
+            MaxLength: =DataSourceInfo([@Table3], DataSourceInfo.MaxLength, "OBS")
+            Required: =false
+            Update: =OBSvendaInput.Text
+            Width: =600
+            X: =0
+            Y: =3
+            ZIndex: =1
+
+            DataCardKey4 As label:
+                AutoHeight: =true
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Visible: |
+                    =false
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            ErrorMessage4 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =24
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataVendaPicker.Y + DataVendaPicker.Height
+                ZIndex: =3
+
+            StarVisible4 As label:
+                Align: =Align.Center
+                Height: =DataCardKey4.Height
+                Size: =21
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey4.Y
+                ZIndex: =4
+
+            OBSvendaInput As text:
+                BorderColor: =RGBA(50, 86, 160, 1)
+                Color: =RGBA(255, 255, 255, 1)
+                Default: =""
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: =135
+                Mode: =TextMode.MultiLine
+                PaddingTop: =8
+                Reset: =ResetInputs
+                Size: =21
+                Width: =521
+                X: =30
+                Y: =71
+                ZIndex: =5
+
+    Header2_1 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =18
+
+        Rectangle1_2 As rectangle:
+            Fill: =RGBA(39, 67, 125, 1)
+            Height: =120
+            Width: =640
+            ZIndex: =6
+
+        ProfilePhoto_2 As image:
+            Height: =121
+            Image: =Office365Users.UserPhoto(User().Email)
+            RadiusBottomLeft: =110
+            RadiusBottomRight: =110
+            RadiusTopLeft: =110
+            RadiusTopRight: =110
+            Width: =121
+            X: =37
+            Y: =28
+            ZIndex: =7
+
+        Label1_2 As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =70
+            Size: =30
+            Text: ="      Registrar Venda"
+            Width: =560
+            X: =40
+            Y: =30
+            ZIndex: =8
+
+    OnlineSign_1 As button:
+        DisabledBorderColor: =RGBA(54, 176, 75, 1)
+        DisabledColor: =RGBA(54, 176, 75, 1)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        DisplayMode: =DisplayMode.Disabled
+        Height: =38
+        RadiusBottomLeft: =30
+        RadiusBottomRight: =30
+        RadiusTopLeft: =30
+        RadiusTopRight: =30
+        Size: =18
+        Text: ="Online"
+        Visible: =Connection.Connected
+        Width: =126
+        X: =70
+        Y: =981
+        ZIndex: =20
+
+    OfflienSign_1 As button:
+        DisabledBorderColor: =RGBA(203, 102, 102, 1)
+        DisabledColor: =RGBA(203, 102, 102, 1)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        DisplayMode: =DisplayMode.Disabled
+        Height: =38
+        RadiusBottomLeft: =30
+        RadiusBottomRight: =30
+        RadiusTopLeft: =30
+        RadiusTopRight: =30
+        Size: =18
+        Text: ="Offline"
+        Visible: =!Connection.Connected
+        Width: =126
+        X: =70
+        Y: =981
+        ZIndex: =21
+
+    Buttons_1 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =32
+
+        Save_1 As button:
+            Align: =Center
+            Height: =50
+            OnSelect: |-
+                =If(
+                    clientName.Selected.NOME = "",
+                    Set(
+                        ErrorMsgContent,
+                        "Insira seu nome"
+                    ),
+                    If(
+                        Len(ValorInput.Text) < 1,
+                        Set(
+                            ErrorMsgContent,
+                            "Insira o valor da Venda"
+                        ),
+                        If(Connection.Connected=true,
+                            SubmitForm(FormVendas);Navigate(Home),
+                            Collect(
+                                TempTableVendas,
+                                {NomeVendaOff:clientName.Selected.NOME, ValorVendaOff:ValorInput.Text, DataVendaOff:DataVendaPicker.SelectedDate, ObsOff:OBSvendaInput.Text}
+                            );
+                            Navigate(Home)
+                        )
+                    )
+                )
+            Size: =18
+            Text: ="Salvar"
+            Width: =130
+            X: =310
+            Y: =939
+            ZIndex: =9
+
+        Cancel_1 As button:
+            Align: =Center
+            Color: =RGBA(39, 67, 125, 1)
+            Fill: =RGBA(230, 230, 230, 1)
+            Height: =43
+            OnSelect: =Back()
+            Size: =18
+            Text: ="Cancelar"
+            Width: =120
+            X: =454
+            Y: =942
+            ZIndex: =10
+
+    NavBar_4 As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =37
+
+        NavBarClients_4 As icon.People:
+            Color: =RGBA(39, 67, 125, 1)
+            Icon: =Icon.People
+            OnSelect: =Navigate(ClientRegister,ScreenTransition.CoverRight)
+            X: =209
+            Y: =1047
+            ZIndex: =2
+
+        NavBarSales_4 As icon.Money:
+            Color: =RGBA(39, 67, 125, 1)
+            Height: =63
+            Icon: =Icon.Money
+            OnSelect: =Navigate(SalesList)
+            X: =366
+            Y: =1048
+            ZIndex: =3
+
+        NavBarHome_4 As icon.Home:
+            Color: =RGBA(39, 67, 125, 1)
+            Icon: =Icon.Home
+            OnSelect: =Navigate(Home,ScreenTransition.CoverRight)
+            X: =50
+            Y: =1047
+            ZIndex: =4
+
+        Icon7_2 As icon.DocumentwithContent:
+            Color: =RGBA(39, 67, 125, 1)
+            Icon: =Icon.DocumentWithContent
+            OnSelect: =Navigate(ClientsList,ScreenTransition.CoverRight)
+            X: =526
+            Y: =1047
+            ZIndex: =5
+

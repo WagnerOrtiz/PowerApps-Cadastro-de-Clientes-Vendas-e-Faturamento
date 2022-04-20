@@ -1,0 +1,298 @@
+Home As screen:
+    Fill: =RGBA(0, 13, 75, 1)
+    OnVisible: |-
+        =Set(vendasOffline,CountRows(TempTableVendas));
+        If(
+            Connection.Connected=true && vendasOffline>0,
+            ForAll(
+                TempTableVendas,
+                Patch(
+                    Table3,{NOMEclienteVENDA:NomeVendaOff, DATA:DataVendaOff, VALOR:ValorVendaOff, OBS:ObsOff}
+                )
+            );
+            Clear(TempTableVendas);
+            ClearCollect(
+                arrVendasOffline,
+                Table3
+            );
+            ClearCollect(
+                arrClientsOffline,
+                Table1
+            );
+            SaveData(
+                arrVendasOffline,
+                "LocalVendas"
+            );
+            SaveData(
+                arrClientsOffline,
+                "LocalClients"
+            ),
+            LoadData(
+                arrClientsOffline,
+                "LocalClients"
+            );
+            LoadData(
+                arrVendasOffline,
+                "LocalVendas"
+            );
+        )
+
+    Header As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =4
+
+        Rectangle1 As rectangle:
+            Fill: =RGBA(39, 67, 125, 1)
+            Height: =120
+            Width: =640
+            ZIndex: =1
+
+        ProfilePhoto As image:
+            Height: =121
+            Image: =Office365Users.UserPhoto(User().Email)
+            RadiusBottomLeft: =110
+            RadiusBottomRight: =110
+            RadiusTopLeft: =110
+            RadiusTopRight: =110
+            Width: =121
+            X: =37
+            Y: =28
+            ZIndex: =2
+
+        Label1 As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =70
+            Size: =30
+            Text: ="Home"
+            Width: =560
+            X: =40
+            Y: =30
+            ZIndex: =3
+
+    ClientBoard As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =16
+
+        Label2 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =86
+            Size: =30
+            Text: ="Clientes"
+            Width: =160
+            X: =127
+            Y: =280
+            ZIndex: =7
+
+        Icon4 As icon.Person:
+            Color: =RGBA(255, 255, 255, 1)
+            Icon: =Icon.Person
+            X: =57
+            Y: =291
+            ZIndex: =10
+
+        Label3 As label:
+            Align: =Align.Center
+            Color: =RGBA(39, 67, 125, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =80
+            Size: =35
+            Text: =CountRows(Table1)
+            Width: =102
+            X: =127
+            Y: =357
+            ZIndex: =13
+
+    SalesBoard As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =16
+
+        Label2_2 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =86
+            Size: =30
+            Text: ="Vendas"
+            Width: =174
+            X: =440
+            Y: =280
+            ZIndex: =9
+
+        Icon6 As icon.ShoppingCart:
+            Color: =RGBA(255, 255, 255, 1)
+            Icon: =Icon.ShoppingCart
+            X: =366
+            Y: =292
+            ZIndex: =12
+
+        Label3_2 As label:
+            Align: =Align.Center
+            Color: =RGBA(39, 67, 125, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =80
+            Size: =35
+            Text: =CountRows(Table3)
+            Width: =102
+            X: =438
+            Y: =357
+            ZIndex: =15
+
+    IncomeBoard As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =16
+
+        Label2_1 As label:
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =86
+            Size: =30
+            Text: ="Faturamento"
+            Width: =600
+            X: =40
+            Y: =469
+            ZIndex: =8
+
+        Icon5 As icon.Currency:
+            Color: =RGBA(255, 255, 255, 1)
+            Icon: =Icon.Currency
+            X: =136
+            Y: =480
+            ZIndex: =11
+
+        Label3_1 As label:
+            Align: =Align.Center
+            Color: |-
+                =If(Sum(Table3, VALOR) > 0, Green,
+                    If(
+                        Sum(Table3, VALOR) < 0, Red, White
+                    )
+                )
+            FontWeight: =FontWeight.Semibold
+            Height: =80
+            Size: =35
+            Text: |-
+                =Text(Value(Sum(Table3, VALOR)),"$ #,###.00","pt-BR")
+            Width: =640
+            Y: =555
+            ZIndex: =14
+
+    NavBar As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =18
+
+        NavBarClients As icon.People:
+            Color: =RGBA(39, 67, 125, 1)
+            Icon: =Icon.People
+            OnSelect: =Navigate(ClientRegister,ScreenTransition.CoverRight)
+            X: =209
+            Y: =1040
+            ZIndex: =5
+
+        NavBarSales As icon.Money:
+            Color: =RGBA(39, 67, 125, 1)
+            Height: =63
+            Icon: =Icon.Money
+            OnSelect: =Navigate(SalesList,ScreenTransition.CoverRight)
+            X: =376
+            Y: =1041
+            ZIndex: =6
+
+        NavBarHome As icon.Home:
+            Color: =RGBA(255, 255, 255, 1)
+            Icon: =Icon.Home
+            X: =50
+            Y: =1040
+            ZIndex: =16
+
+        Icon7 As icon.DocumentwithContent:
+            Color: =RGBA(39, 67, 125, 1)
+            Icon: =Icon.DocumentWithContent
+            OnSelect: =Navigate(ClientsList,ScreenTransition.CoverRight)
+            X: =526
+            Y: =1040
+            ZIndex: =17
+
+    ConnectionLabel_1 As label:
+        Color: =RGBA(255, 255, 0, 1)
+        Height: =49
+        Size: =21
+        Text: =Connection.Connected
+        Visible: =false
+        Width: =88
+        X: =350
+        Y: =689
+        ZIndex: =20
+
+    Label6 As label:
+        Align: =Align.Center
+        Color: =RGBA(255, 255, 255, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =87
+        Size: =25
+        Text: =CountRows(TempTableVendas)
+        Width: =99
+        X: =477
+        Y: =783
+        ZIndex: =21
+
+    Label7 As label:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =67
+        Size: =21
+        Text: ="Vendas Offline em espera"
+        Width: =358
+        X: =91
+        Y: =793
+        ZIndex: =22
+
+    OnlineSign As button:
+        DisabledBorderColor: =RGBA(54, 176, 75, 1)
+        DisabledColor: =RGBA(54, 176, 75, 1)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        DisplayMode: =DisplayMode.Disabled
+        Height: =38
+        RadiusBottomLeft: =30
+        RadiusBottomRight: =30
+        RadiusTopLeft: =30
+        RadiusTopRight: =30
+        Size: =18
+        Text: ="Online"
+        Visible: =Connection.Connected
+        Width: =126
+        X: =50
+        Y: =961
+        ZIndex: =23
+
+    OfflienSign As button:
+        DisabledBorderColor: =RGBA(203, 102, 102, 1)
+        DisabledColor: =RGBA(203, 102, 102, 1)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        DisplayMode: =DisplayMode.Disabled
+        Height: =38
+        RadiusBottomLeft: =30
+        RadiusBottomRight: =30
+        RadiusTopLeft: =30
+        RadiusTopRight: =30
+        Size: =18
+        Text: ="Offline"
+        Visible: =!Connection.Connected
+        Width: =126
+        X: =50
+        Y: =961
+        ZIndex: =24
+

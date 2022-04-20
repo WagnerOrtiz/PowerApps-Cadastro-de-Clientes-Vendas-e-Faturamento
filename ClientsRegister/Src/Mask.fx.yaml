@@ -1,0 +1,62 @@
+Mask As screen:
+
+    formatacao As text:
+        Default: =
+        Height: =70
+        OnChange: |
+            =Clear(colFormatacao);
+            
+            ForAll(
+                Sequence(Len(formatacao.Text)),
+                Collect(
+                    colFormatacao,
+                    {numCaracter: CountRows(MatchAll(Left(formatacao.Text,Value), "#")),
+                    formatarAssim: Left(formatacao.Text,Value)}
+                )
+            );
+            Reset(entrada1)
+        Size: =21
+        Width: =560
+        X: =40
+        Y: =130
+        ZIndex: =1
+
+    entrada1 As text:
+        Default: =valorFormatado
+        Height: =70
+        MaxLength: =15
+        Size: =21
+        Width: =560
+        X: =40
+        Y: =40
+        ZIndex: =2
+
+    Slider2 As slider:
+        Default: =Len(entrada1.Text)
+        Height: =70
+        OnChange: |-
+            =UpdateContext({valorFormatado:
+                With({ 
+                    textoSomentenumeros:Concat(MatchAll(entrada1.Text, Match.Digit), FullMatch)
+                    },
+                    Substitute(
+                        Text(
+                            Value(
+                                textoSomentenumeros
+                            ),
+                            LookUp(
+                                colFormatacao,
+                                Len(textoSomentenumeros) = Value(numCaracter)
+                            ).formatarAssim
+                        ),
+                        "_","."
+                    )
+                )
+            });
+            
+            Reset(entrada1)
+        Width: =560
+        X: =40
+        Y: =219
+        ZIndex: =3
+

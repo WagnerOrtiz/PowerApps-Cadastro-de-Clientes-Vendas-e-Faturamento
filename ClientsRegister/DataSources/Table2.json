@@ -1,0 +1,22 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_excel",
+    "CdpRevision": {
+      "BaseUrl": "/",
+      "LastChangedTimeString": "2022-03-17T16:21:54.1920000Z",
+      "RevisionNumber": 1
+    },
+    "ConnectedDataSourceInfoNameMapping": {
+      "__PowerAppsId__": "Row id",
+      "CIDADE": "CIDADE",
+      "ESTADO": "ESTADO",
+      "PAIS": "PAIS"
+    },
+    "DatasetName": "b!fqPYkF15SUKep5H9Z2iU5sbg9AwAoFBJp2VhsRDtRk_QTSX0D0AiRJLefebY0frY.01WIF5HFMYNF7Y7GIHCVELWEMIRTASLBW2",
+    "EncodeDataset": true,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "Name": "Table2",
+    "Type": "ConnectedDataSourceInfo"
+  }
+]

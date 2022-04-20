@@ -1,0 +1,32 @@
+App As appinfo:
+    BackEnabled: =false
+    OnStart: |-
+        =Set(conexao,Connection.Connected);
+        If(
+            Connection.Connected=true,
+            ClearCollect(
+                arrVendasOffline,
+                Table3
+            );
+            ClearCollect(
+                arrClientsOffline,
+                Table1
+            );
+            SaveData(
+                arrVendasOffline,
+                "LocalVendas"
+            );
+            SaveData(
+                arrClientsOffline,
+                "LocalClients"
+            ),
+            LoadData(
+                arrVendasOffline,
+                "LocalVendas"
+            );
+            LoadData(
+                arrClientsOffline,
+                "LocalClients"
+            )
+        )
+
