@@ -904,7 +904,7 @@ ClientsDetails As screen:
 
     Phone_Mask_2 As text:
         BorderColor: =RGBA(0, 0, 0, 0)
-        Color: =RGBA(255, 255, 0, 1)
+        Color: =RGBA(0, 0, 0, 0)
         Default: |-
             ="(##) #####-####"
         DisabledBorderColor: =RGBA(0, 0, 0, 0)
