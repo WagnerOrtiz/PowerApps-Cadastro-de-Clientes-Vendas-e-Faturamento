@@ -24,7 +24,7 @@ ClientRegister As screen:
             Fill: =RGBA(39, 67, 125, 1)
             Height: =120
             Width: =640
-            ZIndex: =7
+            ZIndex: =8
 
         ProfilePhoto_1 As image:
             Height: =121
@@ -36,7 +36,7 @@ ClientRegister As screen:
             Width: =121
             X: =37
             Y: =28
-            ZIndex: =8
+            ZIndex: =9
 
         Label1_1 As label:
             Align: =Align.Center
@@ -48,7 +48,7 @@ ClientRegister As screen:
             Width: =560
             X: =40
             Y: =30
-            ZIndex: =9
+            ZIndex: =10
 
     EmailBox As group:
         Height: =5
@@ -83,14 +83,14 @@ ClientRegister As screen:
             Width: =476
             X: =119
             Y: =399
-            ZIndex: =3
+            ZIndex: =4
 
         Icon3_1 As icon.Phone:
             Color: =RGBA(39, 67, 125, 1)
             Icon: =Icon.Mail
             X: =34
             Y: =405
-            ZIndex: =6
+            ZIndex: =7
 
     NameBox As group:
         Height: =5
@@ -122,14 +122,14 @@ ClientRegister As screen:
             Width: =476
             X: =119
             Y: =189
-            ZIndex: =2
+            ZIndex: =3
 
         Icon2 As icon.Person:
             Color: =RGBA(39, 67, 125, 1)
             Icon: =Icon.Person
             X: =34
             Y: =192
-            ZIndex: =4
+            ZIndex: =5
 
     ErrorMsg As label:
         Color: =RGBA(255, 255, 0, 1)
@@ -139,7 +139,7 @@ ClientRegister As screen:
         Width: =258
         X: =34
         Y: =941
-        ZIndex: =27
+        ZIndex: =28
 
     PhoneInputs As group:
         Height: =5
@@ -147,61 +147,6 @@ ClientRegister As screen:
         X: =60
         Y: =60
         ZIndex: =30
-
-        Phone_Mask_1 As text:
-            BorderColor: =RGBA(0, 0, 0, 0)
-            Color: =RGBA(0, 0, 0, 0)
-            Default: |-
-                ="(##) #####-####"
-            DisabledBorderColor: =RGBA(0, 0, 0, 0)
-            DisabledColor: =RGBA(0, 0, 0, 0)
-            DisabledFill: =RGBA(0, 0, 0, 0)
-            Fill: =RGBA(0, 0, 0, 0)
-            Height: =39
-            HoverBorderColor: =RGBA(0, 0, 0, 0)
-            HoverColor: =RGBA(0, 0, 0, 0)
-            HoverFill: =RGBA(0, 0, 0, 0)
-            OnChange: =
-            PressedBorderColor: =
-            PressedColor: =RGBA(255, 255, 0, 1)
-            PressedFill: =
-            Size: =12
-            Width: =169
-            X: =428
-            Y: =279
-            ZIndex: =1
-
-        PhoneIcon As icon.Phone:
-            Color: =RGBA(39, 67, 125, 1)
-            Icon: =Icon.Phone
-            X: =34
-            Y: =295
-            ZIndex: =5
-
-        Phone_Input_With_Mask As text:
-            BorderColor: =RGBA(50, 86, 160, 1)
-            Color: =RGBA(255, 255, 255, 1)
-            Default: =phoneFormatado
-            DisabledBorderColor: =RGBA(50, 86, 160, 1)
-            DisabledFill: =RGBA(0, 0, 0, 0)
-            Fill: =RGBA(0, 0, 0, 0)
-            Height: =70
-            HintText: ="Telefone"
-            HoverBorderColor: =RGBA(50, 86, 160, 1)
-            HoverColor: =RGBA(255, 255, 255, 1)
-            HoverFill: =RGBA(0, 0, 0, 0)
-            MaxLength: =15
-            PressedColor: =RGBA(255, 255, 255, 1)
-            PressedFill: =
-            RadiusBottomLeft: =10
-            RadiusBottomRight: =10
-            RadiusTopLeft: =10
-            RadiusTopRight: =10
-            Size: =21
-            Width: =483
-            X: =114
-            Y: =301
-            ZIndex: =28
 
         Phone_Slider_1 As slider:
             Default: =Len(Phone_Input_With_Mask.Text)
@@ -231,6 +176,61 @@ ClientRegister As screen:
             Width: =469
             X: =121
             Y: =523
+            ZIndex: =1
+
+        Phone_Mask_1 As text:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            Color: =RGBA(0, 0, 0, 0)
+            Default: |-
+                ="(##) #####-####"
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(0, 0, 0, 0)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =39
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(0, 0, 0, 0)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            OnChange: =
+            PressedBorderColor: =
+            PressedColor: =RGBA(255, 255, 0, 1)
+            PressedFill: =
+            Size: =12
+            Width: =169
+            X: =428
+            Y: =279
+            ZIndex: =2
+
+        PhoneIcon As icon.Phone:
+            Color: =RGBA(39, 67, 125, 1)
+            Icon: =Icon.Phone
+            X: =34
+            Y: =295
+            ZIndex: =6
+
+        Phone_Input_With_Mask As text:
+            BorderColor: =RGBA(50, 86, 160, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Default: =phoneFormatado
+            DisabledBorderColor: =RGBA(50, 86, 160, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =70
+            HintText: ="Telefone"
+            HoverBorderColor: =RGBA(50, 86, 160, 1)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            MaxLength: =15
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Size: =21
+            Width: =483
+            X: =114
+            Y: =301
             ZIndex: =29
 
     Comment As group:
@@ -246,7 +246,7 @@ ClientRegister As screen:
             Icon: =Icon.Message
             X: =34
             Y: =757
-            ZIndex: =17
+            ZIndex: =18
 
         CommentBox As text:
             AccessibleLabel: =
@@ -275,7 +275,7 @@ ClientRegister As screen:
             Width: =476
             X: =121
             Y: =760
-            ZIndex: =18
+            ZIndex: =19
 
     BirthdayInput As group:
         Height: =5
@@ -294,7 +294,7 @@ ClientRegister As screen:
             Width: =212
             X: =38
             Y: =596
-            ZIndex: =21
+            ZIndex: =22
 
         BirthdayPicker As datepicker:
             BorderColor: =RGBA(39, 67, 125, 1)
@@ -307,7 +307,7 @@ ClientRegister As screen:
             Width: =237
             X: =359
             Y: =592
-            ZIndex: =22
+            ZIndex: =23
 
     Buttons As group:
         Height: =5
@@ -384,7 +384,7 @@ ClientRegister As screen:
             Width: =130
             X: =330
             Y: =955
-            ZIndex: =19
+            ZIndex: =20
 
         Cancel As button:
             Align: =Center
@@ -396,7 +396,7 @@ ClientRegister As screen:
             Width: =120
             X: =474
             Y: =958
-            ZIndex: =20
+            ZIndex: =21
 
     PForPJ As group:
         Height: =5
@@ -416,7 +416,7 @@ ClientRegister As screen:
             Width: =84
             X: =513
             Y: =681
-            ZIndex: =14
+            ZIndex: =15
 
         Label5 As label:
             Color: =RGBA(39, 67, 125, 1)
@@ -428,7 +428,7 @@ ClientRegister As screen:
             Width: =212
             X: =38
             Y: =670
-            ZIndex: =15
+            ZIndex: =16
 
         PForPJ_Label As label:
             Color: =RGBA(39, 67, 125, 1)
@@ -439,7 +439,7 @@ ClientRegister As screen:
             Width: =263
             X: =267
             Y: =675
-            ZIndex: =16
+            ZIndex: =17
 
     LocationInput As group:
         Height: =5
@@ -462,7 +462,7 @@ ClientRegister As screen:
             Width: =96
             X: =119
             Y: =501
-            ZIndex: =10
+            ZIndex: =11
 
         EstadoDropDown As dropdown:
             AllowEmptySelection: =true
@@ -478,14 +478,14 @@ ClientRegister As screen:
             Width: =96
             X: =250
             Y: =501
-            ZIndex: =11
+            ZIndex: =12
 
         Icon3_2 As icon.Phone:
             Color: =RGBA(39, 67, 125, 1)
             Icon: =Icon.Location
             X: =34
             Y: =497
-            ZIndex: =12
+            ZIndex: =13
 
         CidadeDropDown As dropdown:
             AllowEmptySelection: =true
@@ -501,7 +501,7 @@ ClientRegister As screen:
             Width: =217
             X: =380
             Y: =501
-            ZIndex: =13
+            ZIndex: =14
 
     NavBar_3 As group:
         Height: =5
@@ -516,7 +516,7 @@ ClientRegister As screen:
             OnSelect: =Navigate(ClientRegister,ScreenTransition.CoverRight)
             X: =209
             Y: =1047
-            ZIndex: =23
+            ZIndex: =24
 
         NavBarSales_3 As icon.Money:
             Color: =RGBA(39, 67, 125, 1)
@@ -525,7 +525,7 @@ ClientRegister As screen:
             OnSelect: =Navigate(SalesList,ScreenTransition.CoverRight)
             X: =360
             Y: =1048
-            ZIndex: =24
+            ZIndex: =25
 
         NavBarHome_3 As icon.Home:
             Color: =RGBA(39, 67, 125, 1)
@@ -533,7 +533,7 @@ ClientRegister As screen:
             OnSelect: =Navigate(Home,ScreenTransition.CoverRight)
             X: =50
             Y: =1047
-            ZIndex: =25
+            ZIndex: =26
 
         Icon7_1 As icon.DocumentwithContent:
             Color: =RGBA(39, 67, 125, 1)
@@ -541,5 +541,5 @@ ClientRegister As screen:
             OnSelect: =Navigate(ClientsList,ScreenTransition.CoverRight)
             X: =526
             Y: =1047
-            ZIndex: =26
+            ZIndex: =27
 

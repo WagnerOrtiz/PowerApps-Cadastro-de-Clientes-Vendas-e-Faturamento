@@ -18,7 +18,7 @@
       "Name": "Mask",
       "PropertyDataTypeKey": "String",
       "Tooltip": "A custom property",
-      "Type": "{\"Version\":\"1.323\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}"
+      "Type": "{\"Version\":\"1.324\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}"
     }
   ],
   "FirstParty": true,
@@ -29,7 +29,7 @@
   "IsPcfControl": false,
   "IsPremiumPcfControl": false,
   "IsWidgetTemplate": false,
-  "LastModifiedTimestamp": "637860507751881234",
+  "LastModifiedTimestamp": "637902973884930789",
   "Name": "7e343952434047d0999265e3e5136513",
   "OverridableProperties": {},
   "TemplateOriginalName": "5a4c123ac29247d1a8202d8246432e22",
